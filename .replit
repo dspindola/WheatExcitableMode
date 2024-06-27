@@ -1,0 +1,15 @@
+run = "just dev"
+entrypoint = "index.ts"
+compile = "bun build ./index.ts --format=esm --target=bun --outdir=.dist --sourcemap=linked --minify"
+modules = ["typescript-language-server", "web"]
+
+[nix]
+channel = "stable-23_11"
+
+[env]
+PATH = "/home/runner/$REPL_SLUG/.config/.proto/bin:/home/runner/$REPL_SLUG/.config/.proto/.bun/bin:/home/runner/$REPL_SLUG/node_modules/.bin"
+PROTO_HOME = "/home/runner/$REPL_SLUG/.config/.proto"
+
+[[ports]]
+localPort = 8080
+externalPort = 80

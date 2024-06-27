@@ -1,0 +1,2 @@
+[plugins]
+just = "https://raw.githubusercontent.com/Phault/proto-toml-plugins/main/just/plugin.toml"
