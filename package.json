@@ -12,6 +12,7 @@
     "@elysiajs/cors": "^1.0.2",
     "@elysiajs/html": "^1.0.2",
     "@elysiajs/static": "^1.0.3",
+    "@replit/object-storage": "^1.0.0",
     "elysia": "^1.0.25"
   }
 }

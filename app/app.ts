@@ -1,5 +1,8 @@
 import { Elysia, redirect, t, type Context } from "elysia";
 import { handleResponse, setup } from "./entry.server";
+import { Client } from "@replit/object-storage";
+
+const client = new Client()
 
 function api() {
   return new Elysia({ prefix: '/api' })
@@ -15,12 +18,17 @@ function api() {
       })
     .post('/upload', async ({ body }) => {
       console.log(body.name)
-      await Bun.write(`.tmp/${body.name}`, body.file)
+      const file = Bun.file(`.tmp/${body.name}`)
+      await Bun.write(file, body.file)
+      const res = await client.uploadFromBytes(body.name, Buffer.from(await file.arrayBuffer()))
+      const out = await Bun.$`rm -rf ${file.name}`.text()
+      console.log(out)
+
       return {
-        ok: true,
-        data: {
-          name: body.name
-        }
+        ok: res?.ok,
+        name: body.name,
+        value: res?.value,
+        error: res?.error
       }
     }, {
       body: t.Object({
