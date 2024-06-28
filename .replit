@@ -13,3 +13,6 @@ PROTO_HOME = "/home/runner/$REPL_SLUG/.config/.proto"
 [[ports]]
 localPort = 8080
 externalPort = 80
+
+[objectStorage]
+defaultBucketID = "replit-objstore-59e09d1c-63bd-47cd-a2a9-e3cc7b621a53"
