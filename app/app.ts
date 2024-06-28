@@ -36,6 +36,7 @@ function api() {
         name: t.String()
       })
     })
+    .get('/list', async () => await client.list())
 }
 
 export default setup.get('*', handleResponse)
